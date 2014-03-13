@@ -8,6 +8,9 @@ public class BinarySearch{
     public int rbsearch(int n, int[] L){
 
 	int middle = L.length / 2;
+	int top = L.length;
+	int bot = 0;
+
 	if(L[middle] == n){
 	    return middle;
 	}
@@ -30,22 +33,23 @@ public class BinarySearch{
 	}
     }
 
-    public int lbsearch(int n, int [] L){
+    public int ibsearch(int n, int [] L){
 	int middle = L.length / 2;
-	//int old = 0;
-	
-	while (middle > 0){
+	int top = L.length;
+	int bot = 0;
+
+	while (bot <= top){
 	    if(L[middle] == n){
 		return middle;
 	    }
-
+	    
 	    if(L[middle] > n){
-		//old = middle;
-		middle = (L.length - middle)/2;
+		top = middle;
+		middle = (bot + top)/2;
 	    }
 	    else{
-		//old = middle
-		middle = middle / 2;
+		bot = middle;
+		middle = (bot + top)/2;
 	    }
 	}
 	return -1;
