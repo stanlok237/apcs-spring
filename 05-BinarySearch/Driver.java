@@ -42,10 +42,10 @@ public class Driver{
 
 	int[] blah = {0,1,2,3,4,5,6,7,8,9,10};
 
-	System.out.println(test.ibsearch(4,blah));
-	//System.out.println(test.rbsearch(7,blah));
-	//System.out.println(test.rbsearch(0,blah));
-	//System.out.println(test.rbsearch(12,blah));
+	System.out.println(test.rbsearch(4,blah));
+	System.out.println(test.rbsearch(7,blah));
+	System.out.println(test.rbsearch(1,blah));
+	System.out.println(test.rbsearch(12,blah));
 
     }
 }

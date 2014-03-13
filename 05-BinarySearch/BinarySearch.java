@@ -3,39 +3,35 @@ import java.io.*;
 
 public class BinarySearch{
 
-
-    //I'm not sure how you get the correct index with this algorithm
     public int rbsearch(int n, int[] L){
+	return rbsearch(n, L, 0, L.length - 1);
+    }
+    
+    public int rbsearch(int n, int[] L, int bot, int top){
 
-	int middle = L.length / 2;
-	int top = L.length;
-	int bot = 0;
-
-	if(L[middle] == n){
-	    return middle;
-	}
-	else if(middle == 0){
+	int middle = (bot + top) / 2;
+	
+	if(top <= bot){
+	    if(L[middle] == n){
+		return middle;
+	    }
 	    return -1;
 	}
+	
 	else if(L[middle] < n){
-	    int[] temp = new int[L.length - middle];
-	    for(int i = 0; i < temp.length; i++){
-		temp[i] = L[middle + i];
-	    }
-	    return  middle + rbsearch(n,temp);
+	    bot = middle + 1;
+	    return rbsearch(n,L,bot,top);
 	}
-	else{
-	    int[] temp = new int[middle];
-	    for (int i = 0; i<temp.length; i++){
-		temp[i] = L[i];
-	    }
-	    return middle - rbsearch(n,temp);
+	else if(L[middle] > n){
+	    top = middle - 1;
+	    return rbsearch(n,L,bot,top);
 	}
+	return -1;
     }
 
     public int ibsearch(int n, int [] L){
 	int middle = L.length / 2;
-	int top = L.length;
+	int top = L.length - 1;
 	int bot = 0;
 
 	while (bot <= top){
@@ -44,11 +40,11 @@ public class BinarySearch{
 	    }
 	    
 	    if(L[middle] > n){
-		top = middle;
+		top = middle - 1;
 		middle = (bot + top)/2;
 	    }
 	    else{
-		bot = middle;
+		bot = middle + 1;
 		middle = (bot + top)/2;
 	    }
 	}
