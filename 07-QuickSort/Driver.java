@@ -4,6 +4,8 @@ import java.io.*;
 public class Driver{
 
     public static void main(String[]args){
+
+	Random r = new Random();
 	
 	QuickSort quick = new QuickSort();
 
