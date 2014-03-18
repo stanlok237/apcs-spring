@@ -10,8 +10,14 @@ public class QuickSelect{
     }
 
     public int quickselect(int[] a, int k, int low, int high){
-	int middle = (low + high)/2;
-	int pivot = a[middle];
+	//int middle = (low + high)/2;
+	//int pivot = a[middle];
+	
+	Random r = new Random();
+	int pivotIndex = low + r.nextInt(high - low + 1);
+
+	int wall = low;
+	int pivot = a[pivotIndex];
 	
 	//System.out.println( "\nMiddle: " + middle + " Pivot: " + pivot + " Low: " + low + " High: " + high);
 	if(low >= high){
@@ -19,13 +25,13 @@ public class QuickSelect{
 	}
 	else{
 	    //int[] temp = new int[a.length];
-	    int wall = 0;
+	    //    int wall = 0;
 	    int temp = a[high];
 	    a[high] = pivot;
-	    a[middle] = temp;
+	    a[pivotIndex] = temp;
 	    //int count2 = 0;
 	    //  System.out.println("Pivot: " + pivot);
-	    for(int i = low; i < high - 1; i++){
+	    for(int i = low; i < high; i++){
 		for(int j = 0; j < a.length; j++){
 		  System.out.print(a[j] + " ");
 		}
@@ -61,11 +67,11 @@ public class QuickSelect{
 	    //System.out.println();
 	    //System.out.println("Middle: " +  middle);
 	    if(wall < k){
-		low = middle + 1;
+		low = pivotIndex + 1;
 		return quickselect(a,k,low,high);
 	    }
 	    else if(wall > k){
-		high = middle - 1;
+		high = pivotIndex - 1;
 		return quickselect(a,k,low,high);
 	    }
 	    else{
