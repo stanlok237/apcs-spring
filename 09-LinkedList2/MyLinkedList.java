@@ -1,5 +1,6 @@
 public class MyLinkedList {
     private Node head;
+    private Node tail;
 
     /*My Add method works correctly when I check it by calling get to
       each index and printing it out.  However, the toString() seems to
@@ -8,21 +9,32 @@ public class MyLinkedList {
     */
 
     public MyLinkedList() {
-	head = new Node("Empty");
+	head = new Node("");
+	tail = new Node("");
+	head.setNext(tail);
     }
 
     public void add(String d) {
-	Node tmp = new Node(d);
-	tmp.setNext(head); // you must do this first
-	head=tmp; // you must do this second
-
+	if(head.toString().equals("")){
+	    //Node tmp = new Node(d);
+	    //tmp.setNext(head); // you must do this first
+	    head.setData(d); // you must do this second
+	}
+	else if(tail.toString().equals("")){
+	    tail.setData(d);
+	}
+	else{
+	    Node tmp = new Node(d);
+	    tail.setNext(tmp);
+	    tail = tail.getNext();
+	}
     }
-    //Doesn't work properly
+    
     public String toString() {
 	Node tmp = head;
 	String s = "";
 	while(tmp != null){
-	    s += tmp.getNext() + " ";
+	    s += tmp.toString() + " ";
 	    tmp = tmp.getNext();
 	}
 	return s;
@@ -41,7 +53,9 @@ public class MyLinkedList {
 	//	System.out.println(tmp2);
 	tmp.setNext(tmp2.getNext());
 	tmp2.setNext(tmp);
-	head = tmp2;
+	i = 0;
+	while(i <
+	//	head = tmp2;
     }
     
     public String get(int index){
