@@ -1,29 +1,37 @@
-public class MyLinkedList {
-    private Node head;
-    private Node tail;
+import java.util.*;
+import java.io.*;
+
+public class MyLinkedList<E> implements Iterable<E> {
+    private Node<E> head;
+    private Node<E> tail;
+
+    public Iterator<E> iterator(){
+	
+    }
+    
 
     public MyLinkedList() {
-	head = new Node("");
-	tail = new Node("");
+	head = new Node<E>(null);
+	tail = new Node<E>(null);
 	head.setNext(tail);
     }
 
-    public void add(String d) {
-	if(head.toString().equals("")){
+    public void add(E d) {
+	if(head == null)){
 	    head.setData(d); 
 	}
-	else if(tail.toString().equals("")){
+	else if(tail == null){
 	    tail.setData(d);
 	}
 	else{
-	    Node tmp = new Node(d);
+	    Node<E> tmp = new Node<E>(d);
 	    tail.setNext(tmp);
 	    tail = tail.getNext();
 	}
     }
     
     public String toString() {
-	Node tmp = head;
+	Node<E> tmp = head;
 	String s = "";
 	while(tmp != null){
 	    s += tmp.toString() + " ";
@@ -34,9 +42,9 @@ public class MyLinkedList {
 
 
 
-    public void add(int index, String s){
-	Node tmp = new Node(s);
-	Node tmp2 = head;
+    public void add(int index, E s){
+	Node<E> tmp = new Node<E>(s);
+	Node<E> tmp2 = head;
 	int i = 0;
 	while(i < index - 1){
 	    tmp2 = tmp2.getNext();
@@ -47,19 +55,19 @@ public class MyLinkedList {
 	tmp2.setNext(tmp);
     }
     
-    public String get(int index){
-	Node tmp = head;
+    public E get(int index){
+	Node<E> tmp = head;
 	int i = 0;
 	while(i < index){
 	    tmp = tmp.getNext();
 	    i++;
 	}
-	return tmp.toString();
+	return tmp.getData();
     }
     
     
-    public String set(int index, String s){
-	Node tmp = head;
+    public E set(int index, E s){
+	Node<E> tmp = head;
 	//	Node tmp2 = new Node(s);
 	int i = 0;
 	while(i < index-1){
@@ -68,34 +76,34 @@ public class MyLinkedList {
 	}
 	//System.out.println(tmp2);
 	//tmp2.setNext(tmp.getNext().getNext());
-	String ans = tmp.toString();
+	E ans = tmp.getData();
 	tmp.setData(s);
 	return ans;
     }
     
-    public String remove(int index){
+    public E remove(int index){
 	if(index == 0){
-	    String ans = head.toString();
+	    E ans = head.getData();
 	    head = head.getNext();
 	    return ans;
 	}
-	Node tmp = head;
+	Node<E> tmp = head;
 	int i = 0;
 	while(i<index - 1){
 	    tmp = tmp.getNext();
 	    i++;
 	}
-	String ans = tmp.toString();
+	E ans = tmp.getData();
 	tmp.setNext(tmp.getNext().getNext());
 	return ans;
 	
     }
     
-    public int find(String s){
-	Node tmp = head;
+    public int find(E s){
+	Node<E> tmp = head;
 	int i = 0;
 	while(tmp != null){
-	    if(tmp.toString().equals(s)){
+	    if(tmp.getData().equals(s)){
 		return i;
 	    }
 	    tmp = tmp.getNext();
