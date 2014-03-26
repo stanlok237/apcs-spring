@@ -6,7 +6,7 @@ public class MyLinkedList<E> implements Iterable<E> {
     private Node<E> tail;
 
     public Iterator<E> iterator(){
-	
+	return new MyLLIterator<E>(head);	
     }
     
 
@@ -17,7 +17,7 @@ public class MyLinkedList<E> implements Iterable<E> {
     }
 
     public void add(E d) {
-	if(head == null)){
+	if(head == null){
 	    head.setData(d); 
 	}
 	else if(tail == null){
