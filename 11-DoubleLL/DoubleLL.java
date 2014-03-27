@@ -47,17 +47,18 @@ public class DoubleLL<E> {
 	    current = n;
 	}
 	else{
-	    /*
+	    //This fixes the insert problem of deleting elements
+	    //It inserts the element you want directly after the current node
 	    n.prev = current;
 	    n.next = current.next;
 	    current.next = n;
 	    current = n;
-	    */
+	    /*
 	    n.next = current;
 	    n.prev = current.prev;
 	    current.prev = n;
 	    current = n;
-
+	    */
 	}
     }
 
