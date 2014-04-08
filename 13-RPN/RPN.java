@@ -31,7 +31,7 @@ public class RPN{
 	    else if(next.equals("/")){
 		int a = stack.pop();
 		int b = stack.pop();
-		stack.push(a / b);
+		stack.push(b / a); //Justin helped me fix this line 
 		System.out.println(stack);
 		//System.out.println("div");
 	    }
